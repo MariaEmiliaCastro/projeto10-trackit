@@ -6,6 +6,7 @@ import styled from "styled-components";
 import UserContext from "./context/UserContext";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
+import HabitsPage from "./components/HabitsPage";
 
 function App() {
 
@@ -16,8 +17,9 @@ function App() {
       <UserContext.Provider value={{token, setToken}}>
         <BrowserRouter>
           <Routes>
-            <Route  path="/" element={<LoginPage setToken={setToken}/>}/>
+            <Route  path="/" element={<LoginPage/>}/>
             <Route path="/cadastro" element={<RegisterPage />} />
+            <Route path="/sucesso" element={<HabitsPage />} />
           </Routes>
         </BrowserRouter>
 		  </UserContext.Provider>

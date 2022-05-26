@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../context/UserContext";
 import logo from "../assets/img/trackit.png"
 
-export default function LoginPage (props){
+export default function LoginPage (){
 
+    const { token, setToken } = React.useContext(UserContext);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [loading, setLoading] = React.useState('');
+    const navigate = useNavigate();
 
     const loginUser = (event) => {
         event.preventDefault();
@@ -18,8 +22,10 @@ export default function LoginPage (props){
 
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", payload);
         promise.then( response => {
-            console.log(response.data);
-            props.setToken(response.data.token);
+            setLoading("Carregou!");
+            setToken(response.data.token);
+            navigate("/sucesso");
+
         })
     }
     return (
