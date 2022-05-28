@@ -2,7 +2,6 @@ import "./assets/css/reset.css";
 import "./assets/css/fonts.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 import UserContext from "./context/UserContext";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
@@ -16,7 +15,7 @@ function App() {
   const [userImage, setUserImage] = React.useState('');
   const [ meusHabitos, setMeusHabitos ] = React.useState([]);
   const [listDeHabitos, setListaDeHabitos] = React.useState([]);
-  const [ qtdHabitos , setQtdHabitos ] = React.useState(null);
+  const [ qtdHabitos , setQtdHabitos ] = React.useState(0);
   const [ habitosDoDiaTotal, setHabitosDoDiaTotal] = React.useState(null);
 
   return (

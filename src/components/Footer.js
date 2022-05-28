@@ -11,6 +11,13 @@ export default function Footer (){
 
     const { qtdHabitos } = React.useContext(UserContext);
     const { habitosDoDiaTotal } = React.useContext(UserContext);
+    let porcentagem;
+
+    if(Number.isNaN(((qtdHabitos)/habitosDoDiaTotal) * 100)){
+        porcentagem = 0;
+    }else{
+        porcentagem = ((qtdHabitos)/habitosDoDiaTotal) * 100;
+    }   
 
     return (
         <>
@@ -18,7 +25,7 @@ export default function Footer (){
                 <StyledLink to="/habitos" style={{ textDecoration: 'none' }}>Hábitos</StyledLink>
                 <StyledLink to="/hoje" style={{ textDecoration: 'none' }}>
                     <div className="circular-progress-bar">
-                        <CircularProgressbar background={true} value={((qtdHabitos)/habitosDoDiaTotal) * 100} text="Hoje" backgroundPadding={6}
+                        <CircularProgressbar background={true} value={porcentagem} text="Hoje" backgroundPadding={6}
                             styles={{
                                 background: {
                                     margin: '15px',

@@ -15,6 +15,7 @@ export default function HojePage (){
     const { userImage, setUserImage } = React.useContext(UserContext);
     const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
     const {listDeHabitos, setListaDeHabitos} = React.useContext(UserContext);
+    const { meusHabitos } = React.useContext(UserContext);
     const { habitosDoDiaTotal, setHabitosDoDiaTotal } = React.useContext(UserContext);
 
     const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -28,8 +29,8 @@ export default function HojePage (){
 
     React.useEffect(() => {
         
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
-        promise.then( res => {
+        const hojePromise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+        hojePromise.then( res => {
             if(res.data.length > 0){
                 setListaDeHabitos(res.data);
             }
@@ -41,7 +42,7 @@ export default function HojePage (){
     }, []);
 
     function loadHabits() {
-        if(listDeHabitos.length === 0){
+        if(listDeHabitos.length <= 0 || listDeHabitos === undefined || meusHabitos.length === 0){
             return <NoHabits>Você não tem nenhum hábito cadastrado para o dia de hoje!</NoHabits>
         }else{
             setHabitosDoDiaTotal(listDeHabitos.length);
