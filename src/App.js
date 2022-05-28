@@ -11,15 +11,17 @@ import HabitsPage from "./components/HabitsPage";
 function App() {
 
   const [token, setToken] = React.useState('');
+  const [userImage, setUserImage] = React.useState('');
+  const [ meusHabitos, setMeusHabitos ] = React.useState([]);
 
   return (
     <>
-      <UserContext.Provider value={{token, setToken}}>
+      <UserContext.Provider value={{token, setToken, userImage, setUserImage, meusHabitos, setMeusHabitos}}>
         <BrowserRouter>
           <Routes>
             <Route  path="/" element={<LoginPage/>}/>
             <Route path="/cadastro" element={<RegisterPage />} />
-            <Route path="/sucesso" element={<HabitsPage />} />
+            <Route path="/habitos" element={<HabitsPage />} />
           </Routes>
         </BrowserRouter>
 		  </UserContext.Provider>
