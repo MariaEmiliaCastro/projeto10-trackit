@@ -15,27 +15,28 @@ export default function Footer (){
         <>
             <Container>
                 <StyledLink to="/habitos" style={{ textDecoration: 'none' }}>Hábitos</StyledLink>
-                <div className="circular-progress-bar">
-                    <CircularProgressbar background={true} value={percentage} text="Hoje" backgroundPadding={6}
-                        styles={{
-                            background: {
-                                margin: '15px',
-                                fill: '#52B6FF',
-                            },
-                            path: {
-                                stroke: '#FFFFFF'
-                            },
-                            text : {
-                                fill: '#FFFFFF'
-                            },
-                            trail: {
-                                stroke: '#52B6FF',
-                            },
-                        }}
-                    />
-                </div>
-                
-                <StyledLink to="/habitos" style={{ textDecoration: 'none' }}>Histórico</StyledLink>
+                <StyledLink to="/hoje" style={{ textDecoration: 'none' }}>
+                    <div className="circular-progress-bar">
+                        <CircularProgressbar background={true} value={percentage} text="Hoje" backgroundPadding={6}
+                            styles={{
+                                background: {
+                                    margin: '15px',
+                                    fill: '#52B6FF',
+                                },
+                                path: {
+                                    stroke: '#FFFFFF'
+                                },
+                                text : {
+                                    fill: '#FFFFFF'
+                                },
+                                trail: {
+                                    stroke: '#52B6FF',
+                                },
+                            }}
+                        />
+                    </div>
+                </StyledLink>           
+                <StyledLink to="/historico" style={{ textDecoration: 'none' }}>Histórico</StyledLink>
             </Container>
         </>
     )

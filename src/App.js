@@ -7,6 +7,8 @@ import UserContext from "./context/UserContext";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import HabitsPage from "./components/HabitsPage";
+import HojePage from "./components/HojePage";
+import HistoricoPage from "./components/HistoricoPage";
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
             <Route  path="/" element={<LoginPage/>}/>
             <Route path="/cadastro" element={<RegisterPage />} />
             <Route path="/habitos" element={<HabitsPage />} />
+            <Route path="/hoje" element={<HojePage />} />
+            <Route path="/historico" element={<HistoricoPage/>} />
           </Routes>
         </BrowserRouter>
 		  </UserContext.Provider>
