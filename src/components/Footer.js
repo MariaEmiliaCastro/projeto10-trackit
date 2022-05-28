@@ -9,7 +9,9 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function Footer (){
 
-    const percentage = 66;
+    const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
+    const { habitosDoDiaTotal, setHabitosDoDiaTotal } = React.useContext(UserContext);
+    console.log("qtdHabitos: ", qtdHabitos);
 
     return (
         <>
@@ -17,7 +19,7 @@ export default function Footer (){
                 <StyledLink to="/habitos" style={{ textDecoration: 'none' }}>Hábitos</StyledLink>
                 <StyledLink to="/hoje" style={{ textDecoration: 'none' }}>
                     <div className="circular-progress-bar">
-                        <CircularProgressbar background={true} value={percentage} text="Hoje" backgroundPadding={6}
+                        <CircularProgressbar background={true} value={((qtdHabitos)/habitosDoDiaTotal) * 100} text="Hoje" backgroundPadding={6}
                             styles={{
                                 background: {
                                     margin: '15px',

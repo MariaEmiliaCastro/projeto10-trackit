@@ -7,6 +7,8 @@ import UserContext from "../context/UserContext";
 export default function HabitoDeHoje (props) {
 
     const { token } = React.useContext(UserContext);
+    const {listDeHabitos, setListaDeHabitos} = React.useContext(UserContext);
+    const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
     const [checked, setChecked] = React.useState(props.done);
     const [color, setColor] = React.useState("#EBEBEB");
     const [colorLettering, setColorLettering] = React.useState("#666666")
@@ -29,12 +31,18 @@ export default function HabitoDeHoje (props) {
     function completeHabit () {
         if(!checked){
             console.log(props.id);
+
             const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/check`, data, config);
             promise.then( res => {
                 setChecked(true);
                 setColorLettering("#8FC549");
                 setColor("#8FC549");
-                console.log(res.data);
+                const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+                promise.then( res => {
+                    if(res.data.length > 0){
+                        setListaDeHabitos(res.data);
+                    }
+                })
             })
         }else{
             console.log(props.id);
@@ -43,7 +51,12 @@ export default function HabitoDeHoje (props) {
                 setChecked(false);
                 setColorLettering("#666666");
                 setColor("#EBEBEB");
-                console.log(res.data);
+                const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+                promise.then( res => {
+                    if(res.data.length > 0){
+                        setListaDeHabitos(res.data);
+                    }
+                })
             })            
         }
     }

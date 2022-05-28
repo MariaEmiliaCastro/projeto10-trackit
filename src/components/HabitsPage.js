@@ -12,10 +12,11 @@ export default function HabitsPage() {
 
     const { token } = React.useContext(UserContext);
     const { userImage, setUserImage} = React.useContext(UserContext);
+    const {listDeHabitos, setListaDeHabitos} = React.useContext(UserContext);
+    const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
     const [nomeHabito, setNomeHabito] = React.useState('');
     const { meusHabitos, setMeusHabitos } = React.useContext(UserContext);
     const [mostrarCardCadastro, setMostrarCardCadastro] = React.useState(false);
-    const [atualizarPagina, setAtualizarPagina] = React.useState(false);
 
     const config = {
         headers: {
@@ -28,7 +29,6 @@ export default function HabitsPage() {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promise.then( res => {
             if(res.data.length > 0){
-                console.log("Carregou a pagina!")
                 setMeusHabitos(res.data);
             }else{
                 console.log("Sem Atividades Cadastradas!");
@@ -44,7 +44,6 @@ export default function HabitsPage() {
         if(meusHabitos.length === 0){
             return <h2>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
         }else{
-            console.log(meusHabitos)
             return (meusHabitos.map(({id, name, days}, index) => <CardHabito id={id} name={name} days={days} key={index}/>)) 
         }            
     }

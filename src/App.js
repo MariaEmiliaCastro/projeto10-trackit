@@ -15,10 +15,13 @@ function App() {
   const [token, setToken] = React.useState('');
   const [userImage, setUserImage] = React.useState('');
   const [ meusHabitos, setMeusHabitos ] = React.useState([]);
+  const [listDeHabitos, setListaDeHabitos] = React.useState([]);
+  const [ qtdHabitos , setQtdHabitos ] = React.useState(null);
+  const [ habitosDoDiaTotal, setHabitosDoDiaTotal] = React.useState(null);
 
   return (
     <>
-      <UserContext.Provider value={{token, setToken, userImage, setUserImage, meusHabitos, setMeusHabitos}}>
+      <UserContext.Provider value={{token, setToken, userImage, setUserImage, meusHabitos, setMeusHabitos, listDeHabitos, setListaDeHabitos, qtdHabitos , setQtdHabitos, habitosDoDiaTotal, setHabitosDoDiaTotal}}>
         <BrowserRouter>
           <Routes>
             <Route  path="/" element={<LoginPage/>}/>

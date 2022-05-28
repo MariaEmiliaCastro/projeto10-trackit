@@ -13,8 +13,9 @@ export default function HojePage (){
 
     const { token } = React.useContext(UserContext);
     const { userImage, setUserImage } = React.useContext(UserContext);
-    const [ qtdHabitos , setQtdHabitos ] = React.useState(null);
-    const [listDeHabitos, setListaDeHabitos] = React.useState([]);
+    const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
+    const {listDeHabitos, setListaDeHabitos} = React.useContext(UserContext);
+    const { habitosDoDiaTotal, setHabitosDoDiaTotal } = React.useContext(UserContext);
 
     const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
@@ -33,7 +34,6 @@ export default function HojePage (){
                 console.log("Carregou a pagina!")
                 console.log(res.data);
                 setListaDeHabitos(res.data);
-                setQtdHabitos(res.data.length);
             }
             
         })
@@ -44,11 +44,21 @@ export default function HojePage (){
 
     function loadHabits() {
         if(listDeHabitos.length === 0){
-            return <h2>Você não tem nenhum hábito cadastrado para o dia de hoje!</h2>
+            return <NoHabits>Você não tem nenhum hábito cadastrado para o dia de hoje!</NoHabits>
         }else{
             console.log(listDeHabitos)
-            return listDeHabitos.map(({id, name, currentSequence, highestSequence, done}) => <HabitoDeHoje name={name} currentSequence={currentSequence} highestSequence={highestSequence} done={done} id={id} key={id}/>)
-        }            
+            setHabitosDoDiaTotal(listDeHabitos.length);
+            const qtd = listDeHabitos.filter(item => item.done === true);
+            setQtdHabitos(qtd.length);
+            return (
+                <>
+                    <div className="nomezinho">
+                        {qtdHabitos === 0 ? <h2 style={{color: "#BABABA"}}>Nenhum hábito concluído ainda</h2> : <h2 style={{color: "#8FC549"}}>{Math.round(((qtdHabitos)/habitosDoDiaTotal) * 100)}% dos hábitos concluídos</h2>}
+                    </div>
+                    {listDeHabitos.map(({id, name, currentSequence, highestSequence, done}) => <HabitoDeHoje name={name} currentSequence={currentSequence} highestSequence={highestSequence} done={done} id={id} key={id}/>)}
+                </>
+            )
+        }           
     }
 
     const mostraHabitos = loadHabits();
@@ -84,7 +94,6 @@ const Container = styled.div`
     .title {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
     }
 
     div > h1 {
@@ -102,9 +111,25 @@ const Container = styled.div`
         font-weight: 400;
         font-size: 17.976px;
         line-height: 22px;
+        
+        color: #BABABA;
 
-        color: #666666;
-
-        margin-top: 28px;
+        margin-bottom: 28px;
     }
+
+    .nomezinho {
+        color: #BABABA;
+    }
+`
+
+const NoHabits = styled.h2`
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+
+    color: #666666;
+
+    margin-top: 28px;
 `
