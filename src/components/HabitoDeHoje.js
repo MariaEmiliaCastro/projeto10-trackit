@@ -30,7 +30,6 @@ export default function HabitoDeHoje (props) {
 
     function completeHabit () {
         if(!checked){
-            console.log(props.id);
 
             const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/check`, data, config);
             promise.then( res => {
@@ -45,7 +44,6 @@ export default function HabitoDeHoje (props) {
                 })
             })
         }else{
-            console.log(props.id);
             const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props.id}/uncheck`, data, config);
             promise.then( res => {
                 setChecked(false);

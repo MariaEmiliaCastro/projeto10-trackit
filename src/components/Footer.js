@@ -9,9 +9,8 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function Footer (){
 
-    const { qtdHabitos , setQtdHabitos } = React.useContext(UserContext);
-    const { habitosDoDiaTotal, setHabitosDoDiaTotal } = React.useContext(UserContext);
-    console.log("qtdHabitos: ", qtdHabitos);
+    const { qtdHabitos } = React.useContext(UserContext);
+    const { habitosDoDiaTotal } = React.useContext(UserContext);
 
     return (
         <>

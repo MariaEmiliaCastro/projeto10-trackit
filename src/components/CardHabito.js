@@ -17,7 +17,6 @@ export default function CardHabito ({id, name, days}) {
     }
 
     function excluirHabito (){
-        console.log("EXCLUIR", id);
         const choice = window.confirm("Deseja mesmo excluir este habito?");
         if(choice){
             const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);

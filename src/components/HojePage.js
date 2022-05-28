@@ -31,8 +31,6 @@ export default function HojePage (){
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
         promise.then( res => {
             if(res.data.length > 0){
-                console.log("Carregou a pagina!")
-                console.log(res.data);
                 setListaDeHabitos(res.data);
             }
             
@@ -46,7 +44,6 @@ export default function HojePage (){
         if(listDeHabitos.length === 0){
             return <NoHabits>Você não tem nenhum hábito cadastrado para o dia de hoje!</NoHabits>
         }else{
-            console.log(listDeHabitos)
             setHabitosDoDiaTotal(listDeHabitos.length);
             const qtd = listDeHabitos.filter(item => item.done === true);
             setQtdHabitos(qtd.length);

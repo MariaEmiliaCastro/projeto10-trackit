@@ -11,13 +11,11 @@ export default function BotaoDiasSemana ({dia, index, diasSelecionados, setDiasS
             setDiasSelecionados(dias => [...dias, index]);
             setColor("#CFCFCF");
             setInnerColor("#FFF")
-            console.log(diasSelecionados);
             setSelected(true);
         }else{
             diasSelecionados.pop();
             setColor("#FFF");
             setInnerColor("#DBDBDB");
-            console.log(diasSelecionados);
             setSelected(false);
         }
     }

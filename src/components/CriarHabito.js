@@ -40,7 +40,6 @@ export default function CriarHabito (props) {
             props.setMostrarCardCadastro(!props.mostrarCardCadastro);
      
             setMeusHabitos(oldHabits => [...oldHabits, res.data]);
-            console.log("Habito depois de adicionar ", meusHabitos);    
         })
         .catch(err => {
             alert("Erro ao adicionar hábito!");
