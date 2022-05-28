@@ -32,6 +32,11 @@ export default function LoginPage (){
             navigate("/habitos");
 
         })
+        .catch(err => {
+            setLoading(false);
+            alert(err.response.data.message);
+            console.log(err);
+        })
     }
     return (
         <>

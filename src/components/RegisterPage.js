@@ -30,6 +30,8 @@ export default function RegisterPage (){
         })
 
         promise.catch(err => {
+            setLoading(false);
+            alert(err.response.data.message);
             console.log(err);
         })
     }
