@@ -42,9 +42,9 @@ export default function CriarHabito (props) {
             setMeusHabitos(oldHabits => [...oldHabits, res.data]);
         })
         .catch(err => {
-            alert("Erro ao adicionar hábito!");
             setDisable(false);
-            console.log(err.data);
+            alert(err.response.data.message);
+            console.log(err);
         })
     }
 
